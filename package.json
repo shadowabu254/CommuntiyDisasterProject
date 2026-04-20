@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "express-fileupload": "^1.5.2",
+    "lucide-react": "^0.561.0",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  }
+}

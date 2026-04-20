@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: Community Disaster Management API
+  version: "1.0.0"
+  description: API for reports, users, and chat (JWT auth)
+servers:
+  - url: http://localhost:8000
+paths:
+  /auth/signup:
+    post:
+      summary: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                email: { type: string }
+                password: { type: string }
+                role: { type: integer, description: "1=Admin,2=Coordinator,3=Volunteer,4=Citizen" }
+      responses:
+        "200": { description: "User created" }
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        "200": { description: "JWT token and user returned" }
+  /auth/me:
+    get:
+      summary: Get current user
+      security:
+        - bearerAuth: []
+      responses:
+        "200": { description: "Current user" }
+  /users:
+    get:
+      summary: List users (Admin only)
+      security:
+        - bearerAuth: []
+      responses:
+        "200": { description: "List of users" }
+  /reports:
+    get:
+      summary: List reports
+      security:
+        - bearerAuth: []
+      responses:
+        "200": { description: "List of reports" }
+    post:
+      summary: Create report
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                description: { type: string }
+                category: { type: string }
+                location: { type: string }
+      responses:
+        "201": { description: "Report created" }
+  /reports/{id}:
+    put:
+      summary: Update report
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: string }
+      responses:
+        "200": { description: "Updated" }
+  /chat/{id}:
+    get:
+      summary: Get messages for user/report
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: integer }
+      responses:
+        "200": { description: "Messages" }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

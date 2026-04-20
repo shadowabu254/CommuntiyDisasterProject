@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: comdistres
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  server:
+    build:
+      context: ./comdistres-server
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASS=12345678
+      - DB_NAME=comdistres
+      - JWT_SECRET=helloshadow
+      - CLIENT_ORIGIN=http://localhost:3000
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./comdistres-server:/usr/src/app
+      - ./comdistres-server/uploads:/usr/src/app/uploads
+    command: npm run dev
+
+  client:
+    build:
+      context: ./comdistres-client
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000/api
+      - REACT_APP_SOCKET_URL=http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    volumes:
+      - ./comdistres-client:/usr/src/app
+    command: npm start
+
+volumes:
+  db_data:

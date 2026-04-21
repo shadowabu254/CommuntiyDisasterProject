@@ -14,7 +14,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const fetchMe = async () => {
       try {
-        const res = await api.get('https://disaster-system-l3zu.onrender.com/auth/me');
+        const res = await api.get('https://disaster-system-l3zu.onrender.com/api/auth/me');
         setUser(res.data);
       } catch (err) {
         setUser(null);

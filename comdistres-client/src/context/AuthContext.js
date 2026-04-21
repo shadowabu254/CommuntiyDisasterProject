@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
   // Signup
   const signup = async (name, email, password, role = 4, phone = null, address = null) => {
     try {
-      const signupRes = await api.post('/auth/signup', { 
+      const signupRes = await api.post('https://disaster-system-l3zu.onrender.com/api/auth/signup', { 
         name, 
         email, 
         password, 

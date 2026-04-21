@@ -23,13 +23,15 @@ const app = express();
 
 // ── Middleware ─────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || "http://localhost:3000",
+  origin: process.env.CLIENT_ORIGIN || "http://localhost:3000" || "https://desastersystem.onrender.com",
   credentials: true,
 }));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
-
+app.get("/", (req, res) => {
+  res.send("Community Disaster Management API is running 🚀");
+});
 // ── DB ─────────────────────────────────────────────────────────────────────
 connectDB();
 db.sequelize.authenticate()

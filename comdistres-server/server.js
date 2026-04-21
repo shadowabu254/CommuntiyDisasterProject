@@ -67,7 +67,7 @@ const io = new Server(server, {
 chatSocket(io);
 
 // ── Listen ─────────────────────────────────────────────────────────────────
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 10000;
 server.listen(PORT, () => {
   console.log(`✓ Server + Socket.io running on port ${PORT}`);
   console.log(`  API:    http://localhost:${PORT}/api`);

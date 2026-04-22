@@ -103,15 +103,15 @@ export const login = async (req, res) => {
   }
 };
 
-export const fixUsers = async (req, res) => {
-  try {
-    await sequelize.query("UPDATE users SET isactive = true WHERE isactive = false OR isactive IS NULL");
-    res.json({ message: "All users activated successfully!" });
-  } catch (err) {
-    console.error('Fix error:', err);
-    res.status(500).json({ message: 'Error', error: err.message });
-  }
-};
+// export const fixUsers = async (req, res) => {
+//   try {
+//     await sequelize.query("UPDATE users SET isactive = true WHERE isactive = false OR isactive IS NULL");
+//     res.json({ message: "All users activated successfully!" });
+//   } catch (err) {
+//     console.error('Fix error:', err);
+//     res.status(500).json({ message: 'Error', error: err.message });
+//   }
+// };
 
 export const logout = async (req, res) => {
   res.clearCookie('token', { ...cookieOptions });

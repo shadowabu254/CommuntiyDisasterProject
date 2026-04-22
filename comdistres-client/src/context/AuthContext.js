@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     try {
       // Send login request - this returns user data with role
-      const loginRes = await api.post('/auth/login', { email, password });
+      const loginRes = await api.post('https://disaster-system-l3zu.onrender.com/api/auth/login', { email, password });
       // Set user from login response
       setUser(loginRes.data);
       console.log('Login successful,user role: ', loginRes.data,)

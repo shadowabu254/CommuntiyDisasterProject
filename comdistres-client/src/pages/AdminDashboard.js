@@ -86,7 +86,7 @@ useEffect(() => {
 
   const fetchAllReports = async () => {
     try {
-      const res = await api.get("/reports");
+      const res = await api.get("/admin/reports");
       setAllReports(res.data);
     } catch (error) {
       console.error("Error fetching reports:", error);
@@ -156,7 +156,7 @@ useEffect(() => {
         {/* Tab Navigation */}
         <div className="bg-white shadow">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex space-x-8">
+            <div className="flex space-x-8 overflow-x-auto whitespace-nowrap scrollbar-hide pb-px">
               {['dashboard', 'users', 'reports', 'settings'].map(tab => (
                 <button
                   key={tab}
@@ -315,7 +315,7 @@ useEffect(() => {
             <>
               <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
               
-              <div className="bg-white rounded-xl shadow overflow-hidden">
+              <div className="w-full overflow-x-auto rounded-xl shadow">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
@@ -406,7 +406,7 @@ useEffect(() => {
         </Link>
       </div>
     ) : (
-      <div className="bg-white rounded-xl shadow overflow-hidden">
+      <div className="w-full overflow-x-auto rounded-xl shadow">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>

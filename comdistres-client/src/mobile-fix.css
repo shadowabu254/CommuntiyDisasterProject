@@ -1,0 +1,95 @@
+/* ============================================
+   GLOBAL MOBILE FIX — import in index.js/App.js
+   ============================================ */
+
+/* Prevent horizontal overflow on ALL elements */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Prevent any element from breaking out */
+img, video, iframe, table, pre, code {
+  max-width: 100%;
+}
+
+/* ============================================
+   ADMIN DASHBOARD MOBILE FIXES
+   ============================================ */
+
+/* Tab nav — scrollable on mobile instead of wrapping */
+.tab-nav {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+
+/* Tables — make them horizontally scrollable */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 0.75rem;
+}
+
+/* Charts — prevent overflow */
+.recharts-wrapper {
+  max-width: 100% !important;
+}
+
+/* ============================================
+   TAILWIND OVERRIDES FOR MOBILE
+   ============================================ */
+
+@media (max-width: 640px) {
+
+  /* Reduce padding on small screens */
+  .max-w-7xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Stack summary cards vertically */
+  .grid.lg\:grid-cols-5 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Full width charts */
+  .grid.lg\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce heading sizes */
+  h1.text-3xl {
+    font-size: 1.5rem !important;
+  }
+
+  /* Live reports - stack info and badge */
+  .flex.items-center.justify-between.border-l-4 {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+
+  /* Settings inputs full width */
+  .w-full.md\:w-64 {
+    width: 100% !important;
+  }
+
+  /* Table cells smaller text */
+  td, th {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Hide less important table columns on mobile */
+  .hide-mobile {
+    display: none !important;
+  }
+}

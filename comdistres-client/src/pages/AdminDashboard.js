@@ -77,7 +77,7 @@ useEffect(() => {
 
   const fetchUsers = async () => {
     try {
-      const res = await api.get("/admin/users");
+      const res = await api.get("https://disaster-system-l3zu.onrender.com/api/admin/users");
       setUsers(res.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -86,7 +86,7 @@ useEffect(() => {
 
   const fetchAllReports = async () => {
     try {
-      const res = await api.get("/reports");
+      const res = await api.get("https://disaster-system-l3zu.onrender.com/api/reports");
       setAllReports(res.data);
     } catch (error) {
       console.error("Error fetching reports:", error);

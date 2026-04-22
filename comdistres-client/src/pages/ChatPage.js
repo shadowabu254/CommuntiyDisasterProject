@@ -267,7 +267,7 @@ export default function ChatPage(){
   const loadContacts=useCallback(async()=>{
     if(!user)return;
     try{
-      const res=await api.get('/admin/users').catch(()=>api.get('/users'));
+      const res=await api.get('s').catch(()=>api.get('/users'));
       const others=(res.data||[]).filter(u=>Number(u.id)!==Number(user.id));
       const enriched=await Promise.all(others.map(async c=>{
         try{

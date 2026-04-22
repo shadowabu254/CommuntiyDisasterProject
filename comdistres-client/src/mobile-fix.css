@@ -1,95 +1,95 @@
 /* ============================================
-   GLOBAL MOBILE FIX — import in index.js/App.js
+   GLOBAL MOBILE FIX
    ============================================ */
 
-/* Prevent horizontal overflow on ALL elements */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 html, body {
-  overflow-x: hidden;
-  max-width: 100%;
   width: 100%;
+  /* NO overflow-x: hidden — that clips content */
 }
 
-/* Prevent any element from breaking out */
-img, video, iframe, table, pre, code {
+img, video, iframe {
   max-width: 100%;
 }
 
 /* ============================================
-   ADMIN DASHBOARD MOBILE FIXES
+   TABLES — scroll inside container only
    ============================================ */
-
-/* Tab nav — scrollable on mobile instead of wrapping */
-.tab-nav {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.tab-nav::-webkit-scrollbar { display: none; }
-
-/* Tables — make them horizontally scrollable */
-.table-wrapper {
+.table-scroll {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border-radius: 0.75rem;
-}
-
-/* Charts — prevent overflow */
-.recharts-wrapper {
-  max-width: 100% !important;
 }
 
 /* ============================================
-   TAILWIND OVERRIDES FOR MOBILE
+   MOBILE OVERRIDES max 640px
    ============================================ */
-
 @media (max-width: 640px) {
 
-  /* Reduce padding on small screens */
+  /* Global padding */
   .max-w-7xl {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
   }
 
-  /* Stack summary cards vertically */
-  .grid.lg\:grid-cols-5 {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  /* Full width charts */
-  .grid.lg\:grid-cols-2 {
+  /* All grids collapse to single column */
+  [class*="grid-cols"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* Reduce heading sizes */
-  h1.text-3xl {
-    font-size: 1.5rem !important;
+  /* Summary cards 2 per row */
+  .summary-cards {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
   }
 
-  /* Live reports - stack info and badge */
-  .flex.items-center.justify-between.border-l-4 {
+  /* Headings */
+  h1 { font-size: 1.375rem !important; }
+  h2 { font-size: 1.125rem !important; }
+  h3 { font-size: 1rem !important; }
+
+  /* Tab nav scrollable */
+  .tab-nav-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    white-space: nowrap;
+    display: flex;
+  }
+  .tab-nav-scroll::-webkit-scrollbar { display: none; }
+
+  /* Live report rows stack */
+  .live-report-row {
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 0.5rem;
+    gap: 0.5rem !important;
   }
 
-  /* Settings inputs full width */
-  .w-full.md\:w-64 {
-    width: 100% !important;
-  }
-
-  /* Table cells smaller text */
+  /* Table cells */
   td, th {
     padding: 0.5rem 0.75rem !important;
-    font-size: 0.75rem !important;
+    font-size: 0.7rem !important;
+    white-space: nowrap;
   }
 
-  /* Hide less important table columns on mobile */
-  .hide-mobile {
-    display: none !important;
+  /* Cards padding */
+  .bg-white.p-6 {
+    padding: 1rem !important;
+  }
+
+  /* Form inputs full width */
+  input, select, textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Stack flex rows */
+  .mobile-stack {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
   }
 }

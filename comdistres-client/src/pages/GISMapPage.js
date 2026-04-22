@@ -1177,20 +1177,20 @@ function MapArea({
   );
 }
 
-// need MapBoundsUpdater inside MapArea scope — re-declare here
-function MapBoundsUpdater({ reports, selectedReport, searchedLocation }) {
-  const map = useMap();
-  useEffect(() => {
-    if (searchedLocation) {
-      map.setView([searchedLocation.lat, searchedLocation.lng], 13, { animate: true });
-    } else if (selectedReport?._lat && selectedReport?._lng) {
-      map.setView([selectedReport._lat, selectedReport._lng], 15, { animate: true });
-    } else {
-      const valid = reports.filter((r) => r._lat && r._lng);
-      if (valid.length > 0) {
-        map.fitBounds(valid.map((r) => [r._lat, r._lng]), { padding: [50, 50], maxZoom: 13 });
-      }
-    }
-  }, [selectedReport, reports, searchedLocation, map]);
-  return null;
-}
+// // need MapBoundsUpdater inside MapArea scope — re-declare here
+// function MapBoundsUpdater({ reports, selectedReport, searchedLocation }) {
+//   const map = useMap();
+//   useEffect(() => {
+//     if (searchedLocation) {
+//       map.setView([searchedLocation.lat, searchedLocation.lng], 13, { animate: true });
+//     } else if (selectedReport?._lat && selectedReport?._lng) {
+//       map.setView([selectedReport._lat, selectedReport._lng], 15, { animate: true });
+//     } else {
+//       const valid = reports.filter((r) => r._lat && r._lng);
+//       if (valid.length > 0) {
+//         map.fitBounds(valid.map((r) => [r._lat, r._lng]), { padding: [50, 50], maxZoom: 13 });
+//       }
+//     }
+//   }, [selectedReport, reports, searchedLocation, map]);
+//   return null;
+// }

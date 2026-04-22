@@ -67,7 +67,7 @@ export function AuthProvider({ children }) {
   // Logout
   const logout = async () => {
     try {
-      await api.post('/auth/logout');
+      await api.post('https://disaster-system-l3zu.onrender.com/api/auth/logout');
       setUser(null);
     } catch (err) {
       console.error('Logout error:', err);

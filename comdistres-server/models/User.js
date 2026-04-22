@@ -26,7 +26,7 @@ export default (sequelize) => {
     isactive: {  
       type: DataTypes.BOOLEAN,
       allowNull: true,
-      defaultValue: false,
+      defaultValue: true,
     },
     passwordHash: {
       type: DataTypes.STRING,

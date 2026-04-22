@@ -29,6 +29,16 @@ app.use(cors({
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
+// TEMPORARY FIX — remove after use
+app.get('/fix-users', async (req, res) => {
+  try {
+    await db.sequelize.query('UPDATE users SET isactive = 1 WHERE isactive = 0 OR isactive IS NULL');
+    const [users] = await db.sequelize.query('SELECT id, name, email, isactive FROM users');
+    res.json({ message: 'All users activated!', users });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 app.get("/", (req, res) => {
   res.send("Community Disaster Management API is running 🚀");
 });

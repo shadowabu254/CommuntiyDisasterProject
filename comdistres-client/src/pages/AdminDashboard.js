@@ -86,7 +86,7 @@ useEffect(() => {
 
   const fetchAllReports = async () => {
     try {
-      const res = await api.get("https://disaster-system-l3zu.onrender.com/api/reports");
+      const res = await api.get("/reports");
       setAllReports(res.data);
     } catch (error) {
       console.error("Error fetching reports:", error);

@@ -44,6 +44,10 @@ export default (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    coordinatorId: {          // ✅ add this
+  type: DataTypes.INTEGER,
+  allowNull: true,
+},
   }, {
     tableName: "reports",
     timestamps: true,

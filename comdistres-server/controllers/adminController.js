@@ -13,7 +13,7 @@ export const getAnalytics = async (req, res) => {
     const openReports = await Report.count({
       where: {
         status: {
-          [Op.in]: ['Pending', 'assigned', 'in-progress']
+          [Op.in]: ['pending', 'assigned', 'in-progress']
         }
       }
     });

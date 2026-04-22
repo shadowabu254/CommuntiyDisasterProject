@@ -35,6 +35,8 @@ db.Partnership          = PartnershipModel(sequelize);
 // ── Associations ───────────────────────────────────────────────────────────
 db.User.hasMany(db.Report,   { foreignKey: 'reporterId', as: 'reports'  });
 db.Report.belongsTo(db.User, { foreignKey: 'reporterId', as: 'reporter' });
+db.User.hasMany(db.Report,   { foreignKey: 'coordinatorId', as: 'coordinatedReports' }); // ✅ add this
+db.Report.belongsTo(db.User, { foreignKey: 'coordinatorId', as: 'coordinator'});
 db.Message.belongsTo(db.User, { foreignKey: "senderId",   as: "sender"   });
 db.Message.belongsTo(db.User, { foreignKey: "receiverId", as: "receiver" });
 db.User.hasMany(db.Message,   { foreignKey: "senderId",   as: "sentMessages"     });
@@ -72,7 +74,7 @@ const syncDB = async () => {
 
     for (const [colName, colDef] of Object.entries(newColumns)) {
       if (!tableDesc[colName]) {
-        await queryInterface.addColumn('contact_messages', colName, colDef);
+        await qi.addColumn('contact_messages', colName, colDef);
         console.log(`✅ Added column: contact_messages.${colName}`);
       }
     }

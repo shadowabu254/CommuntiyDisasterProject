@@ -38,7 +38,7 @@ export const signup = async (req, res) => {
       role: role || 4,
       phone: phone || null,
       address: address || null,
-      isActive: true
+      isactive: true
     });
 
     const token = signToken(user);
@@ -56,7 +56,7 @@ export const signup = async (req, res) => {
       role: user.role,
       phone: user.phone,
       address: user.address,
-      isActive: user.isActive
+      isactive: user.isactive
     });
   } catch (err) { 
     console.error('Signup error:', err); 
@@ -74,7 +74,7 @@ export const login = async (req, res) => {
     }
 
     // Check if user is active
-    if (!user.isActive) {
+    if (!user.isactive) {
       return res.status(403).json({ message: "Account is deactivated. Contact administrator." });
     }
 
@@ -103,7 +103,7 @@ export const login = async (req, res) => {
       role: user.role,
       phone: user.phone,
       address: user.address,
-      isActive: user.isActive
+      isactive: user.isactive
     });
   } catch (err) {
     console.error('Login error:', err);

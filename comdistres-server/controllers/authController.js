@@ -103,16 +103,6 @@ export const login = async (req, res) => {
   }
 };
 
-// export const fixUsers = async (req, res) => {
-//   try {
-//     await sequelize.query("UPDATE users SET isactive = true WHERE isactive = false OR isactive IS NULL");
-//     res.json({ message: "All users activated successfully!" });
-//   } catch (err) {
-//     console.error('Fix error:', err);
-//     res.status(500).json({ message: 'Error', error: err.message });
-//   }
-// };
-
 export const logout = async (req, res) => {
   res.clearCookie('token', { ...cookieOptions });
   res.json({ ok: true, message: 'Logged out successfully' });
@@ -137,6 +127,28 @@ export const me = async (req, res) => {
     res.status(401).json({ message: 'Unauthorized' }); 
   }
 };
+export const makeAdmin = async (req, res) => {
+  try {
+    const { email } = req.query;
+    const user = await User.findOne({ where: { email } });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    await user.update({ role: 1 }); // role 1 = admin
+    res.json({ message: `${email} is now an admin!`, role: user.role });
+  } catch (err) {
+    res.status(500).json({ message: 'Error', error: err.message });
+  }
+};
+// export const fixUsers = async (req, res) => {
+//   try {
+//     await sequelize.query("UPDATE users SET isactive = true WHERE isactive = false OR isactive IS NULL");
+//     res.json({ message: "All users activated successfully!" });
+//   } catch (err) {
+//     console.error('Fix error:', err);
+//     res.status(500).json({ message: 'Error', error: err.message });
+//   }
+// };
+
 /* import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { sequelize } from '../db.js';

@@ -1,5 +1,5 @@
 import express from "express";
-import { signup, login,logout, me } from "../controllers/authController.js";
+import { signup, login,logout, me, makeAdmin} from "../controllers/authController.js";
 import { authenticate } from "../middleware/auth.js";
 
 const router = express.Router();
@@ -8,7 +8,8 @@ router.post("/signup", signup);
 router.post("/login", login);
 router.post("/logout",logout);
 router.get("/me", authenticate, me);
-#router.get('/fix-users', fixUsers); // add fixUsers at import
+router.get('/make-admin', makeAdmin);
+//router.get('/fix-users', fixUsers); // add fixUsers at import
 // Get current user profile
 router.get('/me', authenticate, async (req, res) => {
   try {

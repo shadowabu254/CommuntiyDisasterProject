@@ -20,6 +20,9 @@ import VolunteerPage from './pages/VolunteerPage';
 import VolunteersAdminPage from './pages/VolunteersAdminPage';
 import PartnersAdminPage from './pages/PartnersAdminPage';
 import PartnershipPage from './pages/PartnershipPage';
+import { ThemeProvider } from './context/ThemeContext';
+import NotificationsPage from './pages/NotificationsPage';
+
 
 function PrivateRoute({ children }) {
   const { user, loading } = React.useContext(AuthContext);
@@ -37,6 +40,7 @@ function AdminRoute({ children }) {
 
 export default function App(){
   return (
+    <ThemeProvider> 
     <AuthProvider>
       <BrowserRouter>
       <AuthProvider>
@@ -62,9 +66,12 @@ export default function App(){
           <Route path="/partner" element={<PartnershipPage />} />
           <Route path="/admin/volunteers" element={<AdminRoute><VolunteersAdminPage /></AdminRoute>} />
           <Route path="/admin/partners"   element={<AdminRoute><PartnersAdminPage /></AdminRoute>} />
+          <Route path="/notifications" element={<PrivateRoute><NotificationsPage /></PrivateRoute>} />
         </Routes>
         </AuthProvider>
       </BrowserRouter>
     </AuthProvider>
+    </ThemeProvider> 
+    
   );
 }

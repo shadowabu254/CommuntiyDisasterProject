@@ -28,6 +28,8 @@ export async function connectDB() {
   try {
     await sequelize.authenticate();
     console.log("✓ Connected to MySQL database");
+    await sequelize.sync({ alter: true });
+    console.log("All models synced successfully");
   } catch (err) {
     console.error("✗ DB connection error:", err.message);
     console.error("  Host:", process.env.DB_HOST);

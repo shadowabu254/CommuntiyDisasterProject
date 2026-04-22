@@ -140,7 +140,7 @@ export const me = async (req, res) => {
       return res.status(401).json({ message: 'User not found' });
     }
 
-    if (!user.isActive) {
+    if (!user.isactive) {
       return res.status(403).json({ message: 'Account is deactivated' });
     }
 

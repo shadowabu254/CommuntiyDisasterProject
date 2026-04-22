@@ -17,6 +17,7 @@ export const getAnalytics = async (req, res) => {
         }
       }
     });
+    
 
     // Last 7 days reports
     const sevenDaysAgo = new Date();
@@ -94,9 +95,13 @@ export const getAnalytics = async (req, res) => {
         count: parseInt(item.dataValues.count)
       }))
     });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  }catch (error) {
+  console.error('Analytics error:', error); // already there
+  res.status(500).json({ 
+    error: error.message, 
+    stack: error.stack  // ✅ add this temporarily
+  });
+}
 };
 
 // Get Live Reports (recent 20)
@@ -114,9 +119,13 @@ export const getLiveReports = async (req, res) => {
       ]
     });
     res.json(reports);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  }  catch (error) {
+  console.error('Live reports error:', error);
+  res.status(500).json({ 
+    error: error.message, 
+    stack: error.stack  // ✅ add this temporarily
+  });
+}
 };
 
 // Get All Users

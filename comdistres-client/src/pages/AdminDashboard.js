@@ -55,7 +55,7 @@ useEffect(() => {
 
   const fetchAnalytics = async () => {
     try {
-      const res = await api.get("https://disaster-system-l3zu.onrender.com/api/admin/analytics");
+      const res = await api.get("/admin/analytics");
       setStats(res.data.summary);
       setReportStats(res.data.byStatus);
       setReportsByType(res.data.byType);
@@ -68,7 +68,7 @@ useEffect(() => {
 
   const fetchLiveReports = async () => {
     try {
-      const res = await api.get("https://disaster-system-l3zu.onrender.com/api/admin/reports/live");
+      const res = await api.get("/admin/reports/live");
       setLiveReports(res.data);
     } catch (error) {
       console.error("Error fetching live reports:", error);
@@ -77,7 +77,7 @@ useEffect(() => {
 
   const fetchUsers = async () => {
     try {
-      const res = await api.get("https://disaster-system-l3zu.onrender.com/api/admin/users");
+      const res = await api.get("/admin/users");
       setUsers(res.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -104,7 +104,7 @@ useEffect(() => {
 
   const handleRoleChange = async (userId, newRole) => {
     try {
-      await api.put(`https://disaster-system-l3zu.onrender.com/api/admin/users/${userId}/role`, { role: newRole });
+      await api.put(`/admin/users/${userId}/role`, { role: newRole });
       alert("Role updated successfully!");
       fetchUsers();
       
